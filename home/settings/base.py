@@ -21,6 +21,10 @@ ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(" ")
 # Application definition
 
 DJANGO_APPS = [
+    "apps.common.apps.CommonConfig",
+    "apps.users.apps.UsersConfig",
+    "apps.profiles.apps.ProfilesConfig",
+    "apps.ratings.apps.RatingsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -39,14 +43,17 @@ THIRD_PARTY_APPS = [
     "phonenumber_field",
 ]
 
-LOCAL_APPS = [
-    "apps.common.apps.CommonConfig",
-    "apps.users.apps.UsersConfig",
-    "apps.profiles.apps.ProfilesConfig",
-    "apps.ratings.apps.RatingsConfig"
-]
+# LOCAL_APPS = [
+#     "apps.common.apps.CommonConfig",
+#     "apps.users.apps.UsersConfig",
+#     "apps.profiles.apps.ProfilesConfig",
+#     "apps.ratings.apps.RatingsConfig",
+# ]
 
-INSTALLED_APPS = LOCAL_APPS + DJANGO_APPS + THIRD_PARTY_APPS
+AUTH_USER_MODEL = 'users.User'
+
+INSTALLED_APPS = THIRD_PARTY_APPS + DJANGO_APPS
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -121,7 +128,6 @@ MEDIA_ROOT = BASE_DIR / "mediafiles"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-AUTH_USER_MODEL = "users.User"
 
 import logging
 import logging.config
